@@ -2079,6 +2079,7 @@ rm -f %{buildroot}%{mandir}/man3/ffi*
 echo gcc-%{version}-%{release}.%{_arch} > $FULLPATH/rpmver
 
 %check
+%if %{?skiptests:0}
 cd obj-%{gcc_target_platform}
 
 %if %{build_java}
@@ -2105,6 +2106,7 @@ done
 tar cf - testlogs-%{_target_platform}-%{version}-%{release} | bzip2 -9c \
   | uuencode testlogs-%{_target_platform}.tar.bz2 || :
 rm -rf testlogs-%{_target_platform}-%{version}-%{release}
+%endif
 
 %clean
 rm -rf %{buildroot}
