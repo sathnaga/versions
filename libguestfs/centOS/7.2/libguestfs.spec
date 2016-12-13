@@ -982,7 +982,8 @@ gzip -9 ChangeLog
 
 
 %check
-
+%if %{?skiptests:0}
+# keep the original behavior
 %if %{runtests}
 
 # Enable debugging - very useful if a test does fail, although
@@ -1048,7 +1049,7 @@ fi
 make check -k
 
 %endif
-
+%endif
 
 %install
 # 'INSTALLDIRS' ensures that Perl and Ruby libs are installed in the
