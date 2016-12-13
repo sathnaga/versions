@@ -1658,6 +1658,7 @@ rm -f $RPM_BUILD_ROOT%{_prefix}/lib/sysctl.d/60-libvirtd.conf
 rm -fr %{buildroot}
 
 %check
+%if %{?skiptests:0}
 cd tests
 make
 # These tests don't current work in a mock build root
@@ -1673,6 +1674,7 @@ then
   cat test-suite.log || true
   exit 1
 fi
+%endif
 
 %if %{with_libvirtd}
 %pre daemon
