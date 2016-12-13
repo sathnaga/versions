@@ -695,6 +695,7 @@ ln -s %{_sysconfdir}/rhsm/ca/redhat-uep.pem %{buildroot}/%{_sysconfdir}/%{name}/
 ln -s %{_sysconfdir}/rhsm/ca/redhat-uep.pem %{buildroot}/%{_sysconfdir}/%{name}/certs.d/redhat.io/redhat-ca.crt
 
 %check
+%if %{?skiptests:0}
 [ ! -w /run/%{repo}.sock ] || {
     mkdir test_dir
     pushd test_dir
@@ -704,6 +705,7 @@ ln -s %{_sysconfdir}/rhsm/ca/redhat-uep.pem %{buildroot}/%{_sysconfdir}/%{name}/
     popd
     popd
 }
+%endif
 
 %post
 %systemd_post %{repo}
