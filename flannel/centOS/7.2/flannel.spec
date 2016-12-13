@@ -168,11 +168,15 @@ cp -pav {backend,pkg,subnet} %{buildroot}/%{gopath}/src/%{import_path}/
 %endif
 
 %check
+%if %{?skiptests:0}
+# the default behavior is to skip the tests, let's keep this piece in order to
+# preserve the default action even when we don't set skiptests
 %if 0%{?with_check}
 export GOPATH=${PWD}/_build:%{gopath}
 go test %{import_path}/pkg/ip
 #go test %{import_path}/remote
 go test %{import_path}/subnet
+%endif
 %endif
 
 %post
