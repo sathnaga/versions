@@ -60,7 +60,9 @@ make V=1 DESTDIR="%{buildroot}" install
 rm -f "%{buildroot}/%{_libdir}/libseccomp.la"
 
 %check
+%if %{?skiptests:0}
 make V=1 check
+%endif
 
 %post -p /sbin/ldconfig
 
