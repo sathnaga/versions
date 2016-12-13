@@ -420,6 +420,9 @@ cp -av %{SOURCE102} $RPM_BUILD_ROOT%{_rpmconfigdir}/macros.d/macros.golang
 
 
 %check
+%if %{?skiptests:0}
+# the default behavior is to skip the tests, let's keep this piece in order to
+# preserve the default action even when we don't set skiptests
 %if %{runtests}
 export GOROOT=$(pwd -P)
 export PATH="$GOROOT"/bin:"$PATH"
@@ -446,7 +449,7 @@ export GO_TEST_TIMEOUT_SCALE=2
 cd ..
 
 %endif
-
+%endif
 
 %post bin
 %{_sbindir}/update-alternatives --install %{_bindir}/go \
