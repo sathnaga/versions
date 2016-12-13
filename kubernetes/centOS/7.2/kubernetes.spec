@@ -728,6 +728,7 @@ cp -a *.md %{buildroot}%{_sharedstatedir}/kubernetes-unit-test/
 popd
 
 %check
+%if %{?skiptests:0}
 # Fedora, RHEL7 and CentOS are tested via unit-test subpackage
 if [ 1 != 1 ]; then
 echo "******Testing the commands*****"
@@ -746,6 +747,7 @@ fi
 
 #define license tag if not already defined
 %{!?_licensedir:%global license %doc}
+%endif
 
 %files
 # empty as it depends on master and node
