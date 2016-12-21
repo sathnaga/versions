@@ -1,8 +1,8 @@
 Package:
  name: 'qemu'
- clone_url: 'https://github.com/open-power-host-os/qemu.git'
- branch: 'hostos-devel'
- commit_id: '697c0e654945ebe7e2dba6268243a6498b2578ff'
+ clone_url: 'https://github.com/qemu/qemu.git'
+ branch: 'master'
+ commit_id: '82ecffa8c050bf5bbc13329e9b65eac1caa5b55c'
  expects_source: "qemu"
  files:
   centos:
